@@ -2,7 +2,7 @@
      @extends('layout')
 
         @section('content')
-        <h1 class="title">Create Coin</h1>
+        <h1 class="title">Sukurti monetą</h1>
 
         <form method="POST" action="/coins">
 

@@ -12,9 +12,10 @@
 @endphp
   @foreach ($coins as $coin)
   <ul class="list-item" >
-      <a href="/coins/{{$coin->id}}" >
-        <li class="">{{$coin->pavadinimas}}</li>
-      </a>
+      
+        <li class=""><a href="/coins/{{$coin->id}}" ><b>Moneta </a>:
+           Pavadinimas </b>{{$coin->pavadinimas}} <b>metai</b> {{$coin->metai}} <b>Kilmės šalis</b> {{$coin->salis}}</li>
+     
   </ul>
 @endforeach
 <div class="field" style="margin-top: 1em">
@@ -30,7 +31,7 @@
 
 @elseif(isset($message))
 <h1 class="title">Monetų sąrašas</h1>
-  <p>Moneta pavadinimu<b> {{ $query }} </b> {{$message}}</p>
+  <p>Moneta <b> {{ $query }} </b> {{$message}}</p>
 
 <p class="title" style="color:red;"></p>
 

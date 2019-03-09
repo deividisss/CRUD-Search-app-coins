@@ -17,7 +17,10 @@ Route::post('/search', function() {
     $q = input::get('q');
     //  dd($q);
     if($q != ""){
-        $coin = Coin::where('pavadinimas', 'LIKE', '%' . $q . '%')->get();
+        $coin = Coin::where('pavadinimas', 'LIKE', '%' . $q . '%')
+                        ->orWhere('metai', 'LIKE', '%' . $q . '%')
+                        ->orWhere('salis', 'LIKE', '%' . $q . '%')
+        ->get();
 
         if(count($coin) > 0)
         return view('coins.search')->withDetails($coin)->withQuery($q);
