@@ -7,13 +7,78 @@
             <p class="is-size-4"><strong>Šalis:</strong> {{$coin->salis}}</p>
 
 
-
-
-
             {{-- <p>{{$coin->description}}</p> --}}
             <p class="is-size-4"><strong>Kiekis: </strong>{{$coin->kiekis}}</p>
+
+
             <hr>
+            
         <div class="content is-size-7" >Metai {{$coin->metai}}</div>
+        
+
+
+
+        @if ($coin->proginesMonetas->count())
+            <p class="is-size-4"><strong>Proginės versijos:</strong></p>
+            <br>
+            <div class="box">
+                
+                    @foreach ($coin->proginesMonetas as $progineMoneta)
+
+                            <form method="POST" action="/proginesMonetos/{{ $progineMoneta->id }}">
+                                @method('PATCH')
+                                @csrf
+
+                                <label class="checkbox {{ $progineMoneta->colected ? 'is-colected' : ''}}" 
+                                    for="colected">
+
+                                    <input type="checkbox" name="colected" onChange="this.form.submit()" 
+                                    {{ $progineMoneta->colected ? 'checked' : ''}}
+                                    >
+                                    {{$progineMoneta->description }}
+                                    <?= $progineMoneta->colected ? 
+                                    '<strong>Kolekcijoje &#9989</strong>' : 
+                                    '<strong>Trūksta &#10060</strong>' ?>
+                                </label>
+
+                            </form>
+
+                    @endforeach
+
+            </div>
+        @endif
+
+        @if ($coin->kolekcinesMonetas->count())
+            <p class="is-size-4"><strong>Kolekcinės versijos:</strong></p>
+            <br>
+            <div class="box">
+                
+                    @foreach ($coin->kolekcinesMonetas as $kolekcineMoneta)
+
+                            <form method="POST" action="/kolekcinesMonetos/{{ $kolekcineMoneta->id }}">
+                                @method('PATCH')
+                                @csrf
+
+                                <label class="checkbox {{ $kolekcineMoneta->colected ? 'is-colected' : ''}}" 
+                                    for="colected">
+
+                                    <input type="checkbox" name="colected" onChange="this.form.submit()" 
+                                    {{ $kolekcineMoneta->colected ? 'checked' : ''}}
+                                    >
+                                    {{$kolekcineMoneta->title }}
+                                    <?= $kolekcineMoneta->colected ? 
+                                    '<strong>Kolekcijoje &#9989</strong>' : 
+                                    '<strong>Trūksta &#10060</strong>' ?>
+                                </label>
+
+                            </form>
+
+                    @endforeach
+
+            </div>
+        @endif
+
+        
         <a href="/coins"><button class="button is-link">Atgal</button></a>
      
 

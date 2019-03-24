@@ -49,6 +49,8 @@ Route::get('/kaskas', function () {
 */
 Route::resource('/','CoinsController');
 Route::resource('coins','CoinsController');
+Route::patch('/proginesMonetos/{progineMoneta}', 'CoinProginesMonetasController@update');
+Route::patch('/kolekcinesMonetos/{kolekcineMoneta}', 'CoinKolekcinesMonetasController@update');
 
 // Route::get('/coins', 'CoinsController@index');
 // Route::post('/coins', 'CoinsController@store');
