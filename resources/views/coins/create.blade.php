@@ -14,30 +14,34 @@
             <div class="field">
                     <label for="pavadinimas" class="label">Pavadinimas</label>
                         <div class="controll">
-                            <input class="input" type="string" name="pavadinimas" required>
+                            <input class="input {{ $errors->has('pavadinimas') ? 'is-danger' : '' }}" 
+                            type="string" name="pavadinimas" value="{{ old('pavadinimas')}} " required>
                         </div>
                 </div>
 
                 <div class="field">
                         <label for="salis" class="label">Šalis</label>
                             <div class="controll">
-                                <input class="input" type="string" name="salis" required>
+                                <input class="input {{ $errors->has('salis') ? 'is-danger' : '' }}"
+                                 type="string" name="salis" value="{{ old('salis')}} " required>
                             </div>
                     </div>
 
                 <div class="field">
                     <label for="kiekis" class="label">Kiekis</label>
                         <div class="controll">
-                            <input class="input is-roundedl" type="number" name="kiekis" required>
+                            <input class="input is-roundedl {{ $errors->has('kiekis') ? 'is-danger' : '' }}"
+                             type="number" name="kiekis" required>
                         </div>
                 </div>
 
      
 
                 <div class="field">
-                    <label for="pavadinimas" class="label">Metai</label>
+                    <label for="metai" class="label">Metai</label>
                         <div class="controll">
-                            <input class="input" type="date" name="metai" required>
+                            <input class="input {{ $errors->has('metai') ? 'is-danger' : '' }}" 
+                            type="date" name="metai" required>
                         </div>
                 </div>
 
@@ -51,7 +55,17 @@
                 <div class="field">
                     <button type="submit" class="button is-primary">Pridėti monetą</button>
                 </div>
-         
+
+
+                @if ($errors->any())
+                <div class="notification is-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
         </form>
 
       @endsection

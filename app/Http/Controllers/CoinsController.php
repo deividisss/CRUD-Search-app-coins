@@ -26,14 +26,16 @@ class CoinsController extends Controller
 
     public function store(){
 
-        Coin::create(request([
-        'pavadinimas',
-        'metai',
-        'salis',
-        'kiekis',
-        // 'description'
-        
-        ]));
+        $attributes = request()->validate([
+            
+            'pavadinimas' => ['required', 'min:2'],
+            'metai' => 'required',
+            'salis' => ['required', 'min:3'],
+            'kiekis' => ['required', 'numeric', 'min:0', 'not_in:0']
+
+        ]);
+
+        Coin::create($attributes);
 
 
         // Coin::create([
